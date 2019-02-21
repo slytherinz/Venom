@@ -1,7 +1,8 @@
 #include <string>
 #include <iostream>
-#include <sys/time.h>
 #include <sstream>
+#include <sys/time.h>
+
 /**
  * 当前时间秒数
  * @return
@@ -11,6 +12,7 @@ long long GetCurrentTime() {
     gettimeofday(&tv, NULL);
     return tv.tv_sec;
 }
+
 
 /**
  * 将string -> long long
