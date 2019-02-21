@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include <sys/time.h>
+#include <string.h>
 
 /**
  * 当前时间秒数
@@ -13,7 +14,14 @@ long long GetCurrentTime() {
     return tv.tv_sec;
 }
 
-
+std::string GetFormatTime() {
+    char curr_time[64];
+    bzero(curr_time, sizeof(curr_time));
+    time_t timep;
+    time(&timep);
+    strftime(curr_time, 64, "%Y%m%d%H%M", localtime(&timep));
+    return curr_time;
+}
 /**
  * 将string -> long long
  */
@@ -24,10 +32,19 @@ long long ToLong(std::string str) {
     return result;
 }
 
-void show(int& put) {
-    put = 10;
+/***
+ * 将long long -> string
+ */
+std::string ToString(long long id) {
+    std::string fromstring;
+    std::stringstream fromstream;
+    fromstream << id;
+    fromstring = fromstream.str();
+    return fromstring;;
 }
+
 int main() {
     std::cout << GetCurrentTime() << std::endl;
+    std::cout << GetFormatTime() << std::endl;
     return 0;
 }
